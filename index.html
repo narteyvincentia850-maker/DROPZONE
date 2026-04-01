@@ -11,26 +11,28 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
   <script src="https://js.paystack.co/v1/inline.js"></script>
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{background:#0c0c0c;font-family:'Manrope',sans-serif;overflow-x:hidden}
-    img{display:block}
-    .card{transition:transform .2s ease,box-shadow .2s ease;cursor:pointer}
-    .card:hover{transform:translateY(-4px);box-shadow:0 12px 40px #ff4d0030!important}
-    .addBtn:hover{background:#ff6a20!important}
-    .thumb:hover{border-color:#ff4d00!important}
-    select,input,button,textarea{font-family:'Manrope',sans-serif}
-    ::-webkit-scrollbar{width:4px}
-    ::-webkit-scrollbar-thumb{background:#ff4d00;border-radius:99px}
-    @keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
-    @keyframes fadeUp{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
-    @keyframes toastIn{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
-    .fade-up{animation:fadeUp .4s ease both}
-    .slide-in{animation:slideIn .3s ease both}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:#0c0c0c;font-family:'Manrope',sans-serif;overflow-x:hidden;}
+    img{display:block;max-width:100%;}
+    ::-webkit-scrollbar{width:4px;}
+    ::-webkit-scrollbar-thumb{background:#ff4d00;border-radius:99px;}
+    .card{transition:transform 0.2s ease,box-shadow 0.2s ease;}
+    .card:hover{transform:translateY(-4px);box-shadow:0 12px 40px #ff4d0033!important;}
+    .addBtn{transition:background 0.2s;}
+    .addBtn:hover{background:#ff6a20!important;}
+    .thumb{transition:border-color 0.2s;}
+    .thumb:hover{border-color:#ff4d00!important;}
+    select,input,button,textarea{font-family:'Manrope',sans-serif;}
+    @keyframes slideIn{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes toastIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    .modal-overlay{animation:fadeIn 0.2s ease;}
+    .cart-panel{animation:slideIn 0.25s ease;}
   </style>
 </head>
 <body>
 <div id="root"></div>
-<script type="text/babel" data-presets="react">
+<script data-presets="react" type="text/babel">
 
 const PAYSTACK_KEY = "pk_live_1d5207e2b9712863c71b5882f773ad02c86071d7";
 const MERCHANT_EMAIL = "narteyvincentia8@gmail.com";
@@ -45,22 +47,22 @@ const DISCOUNT_CODES = {
 
 const PRODUCTS = [
   { id:1, name:"ProScale Kitchen Spoon", brand:"Dropzone Essentials", price:14, originalPrice:18, category:"Kitchen & Home", badge:"Sale", rating:4.7, reviews:43, description:"Precision digital measuring spoon scale for seasoning, tea, milk powder, medicine and more. Weighs up to 500g with g, oz, gn, ct units.", specs:["500g / 0.1g accuracy","Units: g, oz, gn, ct","CR-2032 battery","Length: 23.2cm","ABS plastic"], images:["https://i.ibb.co/Xr022vP0/Screenshot-20260322-023642.jpg"], colors:[], stock:25 },
-  { id:2, name:"FlexCharge Cable Stand", brand:"Dropzone Tech", price:9.81, originalPrice:null, category:"Accessories", badge:"New", rating:4.8, reviews:61, description:"240W fast-charging cable with built-in foldable phone stand. Multi-angle support, 90° elbow design.", specs:["240W / 65W fast charging","Type-C & USB-A","360° rotation stand","Alloy + braided cable"], images:["https://i.ibb.co/jZqrpDKH/Screenshot-20260322-024142.jpg","https://i.ibb.co/qMbVKTVz/Screenshot-20260322-024223.jpg"], colors:[], stock:40 },
-  { id:3, name:"TurboVac Car Cleaner", brand:"Dropzone Auto", price:14.32, originalPrice:19.99, category:"Car & Auto", badge:"Sale", rating:4.9, reviews:112, description:"Powerful cordless mini car vacuum with sterilization, water absorption and dust removal.", specs:["Rechargeable ≤36V","800mA & 1200mA options","Sterilization function","Water absorption"], images:["https://i.ibb.co/Dgg9nHLD/Screenshot-20260323-004613-1.jpg","https://i.ibb.co/TB4d9fvh/Screenshot-20260323-005125.jpg"], colors:["800mA","1200mA"], stock:18 },
-  { id:4, name:"FoldType Bluetooth Keyboard", brand:"Dropzone Tech", price:17.43, originalPrice:null, category:"Accessories", badge:null, rating:4.6, reviews:38, description:"Ultra-slim foldable Bluetooth keyboard for phones, tablets and laptops.", specs:["Bluetooth wireless","24.5×15×2.5cm","Universal compatibility","Includes charging cable"], images:["https://i.ibb.co/GvdCHYB4/Screenshot-20260322-020812-1.jpg","https://i.ibb.co/nsksQYdt/Screenshot-20260322-020741-2.jpg","https://i.ibb.co/7JypY54m/Screenshot-20260322-020748-1.jpg"], colors:["White","Black","Pink"], stock:22 },
+  { id:2, name:"FlexCharge Cable Stand", brand:"Dropzone Tech", price:9.81, originalPrice:null, category:"Accessories", badge:"New", rating:4.8, reviews:61, description:"240W fast-charging cable with built-in foldable phone stand. Multi-angle support, 90\u00b0 elbow design.", specs:["240W / 65W fast charging","Type-C & USB-A","360\u00b0 rotation stand","Alloy + braided cable"], images:["https://i.ibb.co/jZqrpDKH/Screenshot-20260322-024142.jpg","https://i.ibb.co/qMbVKTVz/Screenshot-20260322-024223.jpg"], colors:[], stock:40 },
+  { id:3, name:"TurboVac Car Cleaner", brand:"Dropzone Auto", price:14.32, originalPrice:19.99, category:"Car & Auto", badge:"Sale", rating:4.9, reviews:112, description:"Powerful cordless mini car vacuum with sterilization, water absorption and dust removal.", specs:["Rechargeable \u226436V","800mA & 1200mA options","Sterilization function","Water absorption"], images:["https://i.ibb.co/Dgg9nHLD/Screenshot-20260323-004613-1.jpg","https://i.ibb.co/TB4d9fvh/Screenshot-20260323-005125.jpg"], colors:["800mA","1200mA"], stock:18 },
+  { id:4, name:"FoldType Bluetooth Keyboard", brand:"Dropzone Tech", price:17.43, originalPrice:null, category:"Accessories", badge:null, rating:4.6, reviews:38, description:"Ultra-slim foldable Bluetooth keyboard for phones, tablets and laptops.", specs:["Bluetooth wireless","24.5\u00d715\u00d72.5cm","Universal compatibility","Includes charging cable"], images:["https://i.ibb.co/GvdCHYB4/Screenshot-20260322-020812-1.jpg","https://i.ibb.co/nsksQYdt/Screenshot-20260322-020741-2.jpg","https://i.ibb.co/7JypY54m/Screenshot-20260322-020748-1.jpg"], colors:["White","Black","Pink"], stock:22 },
   { id:5, name:"MirrorCast Selfie Sync", brand:"Dropzone Tech", price:22.22, originalPrice:29.99, category:"Phone & Gadgets", badge:"Sale", rating:4.7, reviews:55, description:"Magnetic rear-camera selfie device that mirrors your phone screen in real time. 50m remote range.", specs:["Real-time screen sync","50m remote range","X40L zoom","Magnetic mount"], images:["https://i.ibb.co/8gHRjvGg/Screenshot-20260323-032046.jpg","https://i.ibb.co/HDPsK2pq/Screenshot-20260323-032116.jpg","https://i.ibb.co/3yZrMz0Z/Screenshot-20260323-032140.jpg"], colors:["Black","Gray","White"], stock:14 },
   { id:6, name:"ZapCord 240W Cable", brand:"Dropzone Tech", price:4.72, originalPrice:null, category:"Accessories", badge:null, rating:4.5, reviews:29, description:"240W PD ultra-fast charging cable. Zinc alloy connectors, available in 1.5m, 2m and 3m.", specs:["240W PD fast charge","Zinc alloy connectors","Lengths: 1.5m, 2m, 3m","Lightning & Type-C"], images:["https://i.ibb.co/Xkym4Dww/Screenshot-20260322-025544.jpg","https://i.ibb.co/mVGHB1GW/Screenshot-20260322-025603.jpg","https://i.ibb.co/d064MDFG/Screenshot-20260322-025447.jpg","https://i.ibb.co/mVG7ST0N/Screenshot-20260322-025429.jpg"], colors:["Orange","Pink","Black"], stock:60 },
-  { id:7, name:"AuroraGlow Projection Lamp", brand:"Dropzone Home", price:19.98, originalPrice:27, category:"Kitchen & Home", badge:"Sale", rating:4.9, reviews:87, description:"Northern Lights water ripple LED lamp with 16 colour modes and remote control.", specs:["16-colour remote","Voltage ≤36V","Size: 12×12×14cm","Socket powered"], images:["https://i.ibb.co/n8b4H20N/2403231056470324000.webp","https://i.ibb.co/zhxn6yJX/2403231056470324400.webp","https://i.ibb.co/sp8F6Zbz/2403231056470323400.webp","https://i.ibb.co/QFTdzctJ/Screenshot-20260323-032729.jpg"], colors:[], stock:30 },
+  { id:7, name:"AuroraGlow Projection Lamp", brand:"Dropzone Home", price:19.98, originalPrice:27, category:"Kitchen & Home", badge:"Sale", rating:4.9, reviews:87, description:"Northern Lights water ripple LED lamp with 16 colour modes and remote control.", specs:["16-colour remote","Voltage \u226436V","Size: 12\u00d712\u00d714cm","Socket powered"], images:["https://i.ibb.co/n8b4H20N/2403231056470324000.webp","https://i.ibb.co/zhxn6yJX/2403231056470324400.webp","https://i.ibb.co/sp8F6Zbz/2403231056470323400.webp","https://i.ibb.co/QFTdzctJ/Screenshot-20260323-032729.jpg"], colors:[], stock:30 },
   { id:8, name:"AirBlast 50K Handheld Blower", brand:"Dropzone Tech", price:16.21, originalPrice:null, category:"Phone & Gadgets", badge:"New", rating:4.6, reviews:34, description:"Powerful 50,000RPM cordless handheld air blower and suction. Perfect for cleaning keyboards and screens.", specs:["50,000RPM motor","Blow & suction modes","Wireless design","USB rechargeable"], images:["https://i.ibb.co/vCWvtN9K/Screenshot-20260322-022522.jpg","https://i.ibb.co/gLdMvvFX/Screenshot-20260322-022611.jpg","https://i.ibb.co/k2NkcP8J/Screenshot-20260322-022427.jpg"], colors:[], stock:20 },
   { id:9, name:"SpinBrew Auto Stirring Mug", brand:"Dropzone Home", price:19.03, originalPrice:null, category:"Kitchen & Home", badge:null, rating:4.7, reviews:48, description:"Electric self-stirring stainless steel mug. Auto-mixes coffee, tea and protein shakes.", specs:["Auto-stirring motor","Food-grade stainless steel","USB rechargeable","Easy to clean"], images:["https://i.ibb.co/7JS5ggpG/Screenshot-20260322-031949.jpg","https://i.ibb.co/TBf5mhXy/Screenshot-20260322-032027.jpg","https://i.ibb.co/gFvxpzLr/Screenshot-20260322-032009.jpg"], colors:[], stock:25 },
   { id:10, name:"PetGroom Self-Clean Brush", brand:"Dropzone Home", price:15.41, originalPrice:21, category:"Kitchen & Home", badge:"Sale", rating:4.8, reviews:72, description:"One-click self-cleaning pet brush with steam grooming function for dogs and cats.", specs:["Self-cleaning button","Steam function","For dogs & cats","Gentle bristles"], images:["https://i.ibb.co/mCkvTS5Z/2407220816140329600.webp","https://i.ibb.co/yczqf64S/2407220816150320500.webp","https://i.ibb.co/VcYZzB9N/2407220816150324500.webp"], colors:[], stock:30 },
-  { id:11, name:"PocketPrint Mini Label Maker", brand:"Dropzone Tech", price:12.35, originalPrice:null, category:"Phone & Gadgets", badge:"Popular", rating:4.7, reviews:61, description:"Wireless thermal label printer. No ink needed. Control from your phone via Bluetooth.", specs:["Thermal printing — no ink","Bluetooth wireless","Phone app control","Compact pocket size"], images:["https://i.ibb.co/4kNcdpp/Screenshot-20260322-033019.jpg","https://i.ibb.co/hRvHbSKR/Screenshot-20260322-032930.jpg","https://i.ibb.co/Ndy9SX7W/Screenshot-20260322-032945.jpg"], colors:[], stock:22 },
+  { id:11, name:"PocketPrint Mini Label Maker", brand:"Dropzone Tech", price:12.35, originalPrice:null, category:"Phone & Gadgets", badge:"Popular", rating:4.7, reviews:61, description:"Wireless thermal label printer. No ink needed. Control from your phone via Bluetooth.", specs:["Thermal printing \u2014 no ink","Bluetooth wireless","Phone app control","Compact pocket size"], images:["https://i.ibb.co/4kNcdpp/Screenshot-20260322-033019.jpg","https://i.ibb.co/hRvHbSKR/Screenshot-20260322-032930.jpg","https://i.ibb.co/Ndy9SX7W/Screenshot-20260322-032945.jpg"], colors:[], stock:22 },
   { id:12, name:"LureTrap USB Mosquito Killer", brand:"Dropzone Home", price:16.13, originalPrice:null, category:"Kitchen & Home", badge:null, rating:4.6, reviews:53, description:"Silent USB mosquito trap using UV photocatalyst light. Chemical-free, safe for children and pets.", specs:["UV photocatalyst","Chemical-free & silent","USB powered","Safe for kids & pets"], images:["https://i.ibb.co/Gvgk3Yf3/Screenshot-20260324-170151.jpg","https://i.ibb.co/MyxXx9Jr/Screenshot-20260324-170206.jpg","https://i.ibb.co/3YpN0zm2/Screenshot-20260324-170248.jpg"], colors:[], stock:35 },
   { id:13, name:"SlimKeys Wireless Keyboard", brand:"Dropzone Tech", price:19.75, originalPrice:25, category:"Accessories", badge:"Sale", rating:4.5, reviews:41, description:"Slim Bluetooth keyboard for phones, tablets and laptops. Ultra-thin profile, quiet keys.", specs:["Bluetooth wireless","Ultra-slim profile","Quiet key switches","USB-C charging"], images:["https://i.ibb.co/hxG7JYXk/Screenshot-20260323-010931.jpg","https://i.ibb.co/93vLHHbB/Screenshot-20260323-010942.jpg","https://i.ibb.co/G4MMmgbx/Screenshot-20260323-010918.jpg"], colors:[], stock:18 },
   { id:14, name:"CitrusPro Electric Juicer", brand:"Dropzone Home", price:40.98, originalPrice:null, category:"Kitchen & Home", badge:"Hot", rating:4.8, reviews:94, description:"Electric citrus juicer for oranges, lemons, limes and grapefruit. Food-grade, dishwasher safe.", specs:["USB electric powered","Food-grade ABS & PC","Pulp filter included","Dishwasher safe"], images:["https://i.ibb.co/fdzvWMX0/Screenshot-20260323-010047.jpg","https://i.ibb.co/TqJWZDbW/Screenshot-20260323-005948.jpg","https://i.ibb.co/Df5VKzRq/Screenshot-20260323-010022.jpg"], colors:[], stock:15 },
   { id:15, name:"FreshSpin Portable Blender", brand:"Dropzone Home", price:27.46, originalPrice:35, category:"Kitchen & Home", badge:"Sale", rating:4.7, reviews:66, description:"Compact wireless juicer and blender for fresh juice on the go.", specs:["Multi-function blending","Wireless electric","Portable & lightweight","Easy to clean"], images:["https://i.ibb.co/RpPgWg0G/5d30b3f1-30e7-40e8-a970-9e4889ef2c7a.webp","https://i.ibb.co/5WXrnhd7/5940e681-f9fd-471f-afca-93f70ec83a68.webp","https://i.ibb.co/CpScgpJx/5554b7fe-7e49-45c3-8dda-d2fd69596807.webp"], colors:[], stock:20 },
   { id:16, name:"PowerSpin 500W Juicer", brand:"Dropzone Home", price:58.32, originalPrice:null, category:"Kitchen & Home", badge:"Premium", rating:4.8, reviews:38, description:"High-power 500W centrifugal juicer. Wide feed chute, easy assembly and cleaning.", specs:["500W motor","Centrifugal extraction","Wide feed chute","Easy to clean"], images:["https://i.ibb.co/N6g7zjNG/Screenshot-20260328-004108.jpg"], colors:[], stock:10 },
-  { id:17, name:"PocketBeam Mini Projector", brand:"Dropzone Tech", price:12.45, originalPrice:18, category:"Phone & Gadgets", badge:"Sale", rating:4.6, reviews:57, description:"Ultra-compact portable projector for home cinema. 180° projection, auto-focus, wireless mirroring.", specs:["180° projection","Auto-focus","HDMI & wireless","Portable & lightweight"], images:["https://i.ibb.co/FLMXwpMv/Screenshot-20260326-012025.jpg","https://i.ibb.co/JFvqtnnj/Screenshot-20260326-011834.jpg","https://i.ibb.co/CjG9g4f/Screenshot-20260326-011932.jpg","https://i.ibb.co/wZc3dsnv/Screenshot-20260326-011902.jpg"], colors:[], stock:16 },
+  { id:17, name:"PocketBeam Mini Projector", brand:"Dropzone Tech", price:12.45, originalPrice:18, category:"Phone & Gadgets", badge:"Sale", rating:4.6, reviews:57, description:"Ultra-compact portable projector for home cinema. 180\u00b0 projection, auto-focus, wireless mirroring.", specs:["180\u00b0 projection","Auto-focus","HDMI & wireless","Portable & lightweight"], images:["https://i.ibb.co/FLMXwpMv/Screenshot-20260326-012025.jpg","https://i.ibb.co/JFvqtnnj/Screenshot-20260326-011834.jpg","https://i.ibb.co/CjG9g4f/Screenshot-20260326-011932.jpg","https://i.ibb.co/wZc3dsnv/Screenshot-20260326-011902.jpg"], colors:[], stock:16 },
   { id:18, name:"LaserMeasure Digital Tape", brand:"Dropzone Tech", price:11.22, originalPrice:null, category:"Phone & Gadgets", badge:null, rating:4.7, reviews:44, description:"Electronic digital measuring tape with laser distance sensor. Instantly measures rooms and spaces.", specs:["Laser distance sensor","Digital LCD display","High precision","Battery powered"], images:["https://i.ibb.co/Txm9TDv5/Screenshot-20260325-152059.jpg","https://i.ibb.co/0RyzkdNn/Screenshot-20260325-152141.jpg","https://i.ibb.co/gL45vXCK/Screenshot-20260325-152118.jpg"], colors:[], stock:28 },
 ];
 
@@ -73,559 +75,146 @@ function fmt(usd, cur) {
   return "$" + usd.toFixed(2) + " \u00B7 GH\u20B5" + ghs;
 }
 
-function toPesewas(usd) {
+function toKobo(usd) {
   return Math.round(usd * USD_TO_GHS * 100);
 }
 
-function badgeColor(b) {
-  if (b === "Sale") return "#ef4444";
-  if (b === "Hot") return "#ff4d00";
-  if (b === "New") return "#10b981";
-  if (b === "Premium") return "#8b5cf6";
-  if (b === "Popular") return "#0ea5e9";
-  return "#f59e0b";
-}
-
-/* ── OFFER BANNER ── */
+/* ─── OFFER BANNER ─── */
 function OfferBanner({ onClose }) {
   const [t, setT] = React.useState(21600);
   React.useEffect(() => {
-    const id = setInterval(() => setT(p => p > 0 ? p - 1 : 0), 1000);
-    return () => clearInterval(id);
+    const i = setInterval(() => setT(p => p > 0 ? p - 1 : 0), 1000);
+    return () => clearInterval(i);
   }, []);
-  const hh = String(Math.floor(t / 3600)).padStart(2, "0");
-  const mm = String(Math.floor((t % 3600) / 60)).padStart(2, "0");
-  const ss = String(t % 60).padStart(2, "0");
+  const h = String(Math.floor(t / 3600)).padStart(2,"0");
+  const m = String(Math.floor((t % 3600) / 60)).padStart(2,"0");
+  const s = String(t % 60).padStart(2,"0");
   return (
     <div style={{background:"linear-gradient(90deg,#ff4d00,#ff6a20)",padding:"10px 20px",display:"flex",alignItems:"center",justifyContent:"center",gap:10,position:"relative",flexWrap:"wrap",zIndex:100}}>
-      <span style={{fontSize:13,color:"#fff",fontWeight:500}}>
-        🔥 FLASH SALE — Use <strong>DROPZONE10</strong> for 10% off! Ends in
-      </span>
-      <span style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:18,color:"#fff",letterSpacing:2,background:"#00000033",padding:"2px 10px",borderRadius:6}}>
-        {hh}:{mm}:{ss}
-      </span>
+      <span style={{fontSize:13,color:"#fff",fontWeight:500}}>🔥 FLASH SALE — Use <strong>DROPZONE10</strong> for 10% off! Ends in </span>
+      <span style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:18,color:"#fff",letterSpacing:2,background:"#00000033",padding:"2px 10px",borderRadius:6}}>{h}:{m}:{s}</span>
       <button style={{position:"absolute",right:16,background:"transparent",border:"none",color:"#ffffff88",fontSize:16,cursor:"pointer"}} onClick={onClose}>✕</button>
     </div>
   );
 }
 
-/* ── TOAST ── */
-function Toast({ toast }) {
-  if (!toast) return null;
-  return (
-    <div style={{position:"fixed",bottom:24,left:"50%",transform:"translateX(-50%)",background:toast.color||"#ff4d00",color:"#fff",padding:"10px 20px",borderRadius:10,fontSize:13,fontWeight:600,zIndex:9999,whiteSpace:"nowrap",boxShadow:"0 8px 30px #0008",animation:"toastIn .3s ease"}}>
-      {toast.msg}
-    </div>
-  );
-}
-
-/* ── STAR RATING ── */
+/* ─── STAR RATING ─── */
 function Stars({ rating }) {
   return (
-    <span style={{color:"#f59e0b",fontSize:11}}>
+    <span style={{color:"#f59e0b",fontSize:12,letterSpacing:1}}>
       {"★".repeat(Math.floor(rating))}{"☆".repeat(5 - Math.floor(rating))}
     </span>
   );
 }
 
-/* ── PRODUCT CARD ── */
-function ProductCard({ p, currency, onOpen, onAdd, wishlist, onWishlist }) {
-  const inWish = wishlist.includes(p.id);
-  return (
-    <div className="card" style={{background:"#111",border:"1px solid #1a1a1a",borderRadius:14,overflow:"hidden",display:"flex",flexDirection:"column",position:"relative"}}>
-      {p.badge && (
-        <div style={{position:"absolute",top:10,left:10,background:badgeColor(p.badge),color:"#fff",fontSize:9,fontWeight:800,padding:"3px 8px",borderRadius:99,letterSpacing:1,zIndex:2,textTransform:"uppercase"}}>
-          {p.badge}
-        </div>
-      )}
-      <button onClick={(e) => { e.stopPropagation(); onWishlist(p.id); }} style={{position:"absolute",top:8,right:8,background:"#0009",border:"none",borderRadius:99,width:30,height:30,cursor:"pointer",fontSize:14,zIndex:2,display:"flex",alignItems:"center",justifyContent:"center"}}>
-        {inWish ? "❤️" : "🤍"}
-      </button>
-      <div onClick={() => onOpen(p)} style={{width:"100%",aspectRatio:"1/1",overflow:"hidden",background:"#0a0a0a",cursor:"pointer"}}>
-        <img src={p.images[0]} alt={p.name} style={{width:"100%",height:"100%",objectFit:"cover",transition:"transform .3s ease"}}
-          onMouseEnter={e => e.target.style.transform = "scale(1.06)"}
-          onMouseLeave={e => e.target.style.transform = "scale(1)"}
-        />
-      </div>
-      <div style={{padding:"12px",display:"flex",flexDirection:"column",gap:6,flex:1}}>
-        <div style={{fontSize:9,color:"#444",textTransform:"uppercase",letterSpacing:1}}>{p.brand}</div>
-        <div onClick={() => onOpen(p)} style={{fontSize:13,fontWeight:700,color:"#e2e8f0",lineHeight:1.3,cursor:"pointer"}}>{p.name}</div>
-        <div style={{display:"flex",alignItems:"center",gap:6}}>
-          <Stars rating={p.rating} />
-          <span style={{fontSize:10,color:"#444"}}>({p.reviews})</span>
-        </div>
-        <div style={{display:"flex",alignItems:"center",gap:8,flexWrap:"wrap",marginTop:"auto",paddingTop:4}}>
-          <span style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:18,color:"#ff4d00",letterSpacing:1}}>{fmt(p.price, currency)}</span>
-          {p.originalPrice && (
-            <span style={{fontSize:11,color:"#333",textDecoration:"line-through"}}>{fmt(p.originalPrice, currency)}</span>
-          )}
-        </div>
-        {p.colors.length > 0 ? (
-          <ColorAddButton p={p} onAdd={onAdd} />
-        ) : (
-          <button className="addBtn" onClick={() => onAdd(p, "")} style={{background:"#ff4d00",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:700,padding:"8px 0",cursor:"pointer",transition:"background .2s",marginTop:4}}>
-            ADD TO CART
-          </button>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function ColorAddButton({ p, onAdd }) {
-  const [sel, setSel] = React.useState(p.colors[0] || "");
-  return (
-    <div style={{display:"flex",flexDirection:"column",gap:6,marginTop:4}}>
-      <div style={{display:"flex",gap:4,flexWrap:"wrap"}}>
-        {p.colors.map(c => (
-          <button key={c} onClick={() => setSel(c)} style={{background:sel===c?"#ff4d00":"#1a1a1a",border:`1px solid ${sel===c?"#ff4d00":"#2a2a2a"}`,borderRadius:6,color:sel===c?"#fff":"#777",fontSize:10,padding:"3px 8px",cursor:"pointer",transition:"all .15s"}}>
-            {c}
-          </button>
-        ))}
-      </div>
-      <button className="addBtn" onClick={() => onAdd(p, sel)} style={{background:"#ff4d00",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:700,padding:"8px 0",cursor:"pointer",transition:"background .2s"}}>
-        ADD TO CART
-      </button>
-    </div>
-  );
-}
-
-/* ── CART DRAWER ── */
-function CartDrawer({ cart, onClose, onRemove, onQty, currency, onCheckout }) {
-  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  const [code, setCode] = React.useState("");
-  const [discount, setDiscount] = React.useState(0);
-  const [codeMsg, setCodeMsg] = React.useState("");
+/* ─── CHECKOUT MODAL ─── */
+function CheckoutModal({ cart, onClose, onSuccess, discountPct }) {
+  const [email, setEmail] = React.useState("");
   const [name, setName] = React.useState("");
   const [phone, setPhone] = React.useState("");
-  const [email, setEmail] = React.useState("");
   const [address, setAddress] = React.useState("");
-  const [step, setStep] = React.useState("cart");
+  const [loading, setLoading] = React.useState(false);
+  const [err, setErr] = React.useState("");
+  const [discountCode, setDiscountCode] = React.useState("");
+  const [appliedDiscount, setAppliedDiscount] = React.useState(discountPct || 0);
+  const [discountMsg, setDiscountMsg] = React.useState("");
 
-  const applyCode = () => {
-    const d = DISCOUNT_CODES[code.toUpperCase()];
-    if (d) { setDiscount(d); setCodeMsg("✓ Code applied: " + Math.round(d*100) + "% off!"); }
-    else { setDiscount(0); setCodeMsg("✗ Invalid code"); }
-  };
+  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const discountAmt = subtotal * appliedDiscount;
+  const total = subtotal - discountAmt;
+  const totalGHS = total * USD_TO_GHS;
 
-  const finalTotal = total * (1 - discount);
+  function applyCode() {
+    const code = discountCode.trim().toUpperCase();
+    if (DISCOUNT_CODES[code]) {
+      setAppliedDiscount(DISCOUNT_CODES[code]);
+      setDiscountMsg("\u2713 Code applied! " + (DISCOUNT_CODES[code] * 100) + "% off");
+    } else {
+      setDiscountMsg("Invalid code");
+    }
+  }
 
-  const pay = () => {
-    if (!name || !email || !address) { alert("Please fill in all fields."); return; }
-    if (typeof PaystackPop === "undefined") { alert("Payment gateway not loaded. Please check your connection."); return; }
+  function handlePay() {
+    if (!email || !name) { setErr("Please fill in your name and email."); return; }
+    if (!/\S+@\S+\.\S+/.test(email)) { setErr("Please enter a valid email address."); return; }
+    setErr("");
+    setLoading(true);
+
+    if (typeof PaystackPop === "undefined") {
+      setLoading(false);
+      setErr("Payment system failed to load. Please refresh and try again.");
+      return;
+    }
+
     const handler = PaystackPop.setup({
       key: PAYSTACK_KEY,
       email: email,
-      amount: toPesewas(finalTotal),
+      amount: Math.round(totalGHS * 100),
       currency: "GHS",
-      ref: "DZ_" + Date.now(),
-      metadata: { name, phone, address, cart: JSON.stringify(cart.map(i => ({ name: i.name, qty: i.qty, color: i.selectedColor }))) },
-      callback: (response) => {
-        onCheckout(response.reference);
-        onClose();
+      ref: "DZ-" + Date.now() + "-" + Math.floor(Math.random() * 99999),
+      metadata: {
+        custom_fields: [
+          { display_name: "Customer Name", variable_name: "customer_name", value: name },
+          { display_name: "Phone", variable_name: "phone", value: phone },
+          { display_name: "Delivery Address", variable_name: "address", value: address },
+          { display_name: "Items", variable_name: "items", value: cart.map(i => i.qty + "x " + i.name).join(", ") },
+        ]
       },
-      onClose: () => {}
+      callback: function(response) {
+        setLoading(false);
+        onSuccess({ ref: response.reference, name, email, total, totalGHS });
+      },
+      onClose: function() {
+        setLoading(false);
+      }
     });
     handler.openIframe();
-  };
+  }
 
   return (
-    <div style={{position:"fixed",inset:0,zIndex:1000,display:"flex"}}>
-      <div style={{flex:1,background:"#000a"}} onClick={onClose} />
-      <div className="slide-in" style={{width:"min(420px,100vw)",background:"#0f0f0f",borderLeft:"1px solid #1a1a1a",display:"flex",flexDirection:"column",height:"100vh",overflowY:"auto"}}>
-        <div style={{padding:"16px 20px",borderBottom:"1px solid #1a1a1a",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-          <span style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:20,letterSpacing:2,color:"#fff"}}>YOUR CART ({cart.length})</span>
-          <button onClick={onClose} style={{background:"#1a1a1a",border:"none",borderRadius:8,color:"#777",padding:"6px 10px",cursor:"pointer",fontSize:14}}>✕</button>
-        </div>
-        {cart.length === 0 ? (
-          <div style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",gap:12,color:"#333"}}>
-            <span style={{fontSize:48}}>🛒</span>
-            <span style={{fontSize:13}}>Your cart is empty</span>
-          </div>
-        ) : step === "cart" ? (
-          <>
-            <div style={{flex:1,overflowY:"auto",padding:"12px 20px",display:"flex",flexDirection:"column",gap:10}}>
-              {cart.map(item => (
-                <div key={item.key} style={{background:"#161616",border:"1px solid #1e1e1e",borderRadius:10,padding:"10px",display:"flex",gap:10,alignItems:"flex-start"}}>
-                  <img src={item.images[0]} alt={item.name} style={{width:56,height:56,objectFit:"cover",borderRadius:8,background:"#0a0a0a"}} />
-                  <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontSize:12,fontWeight:700,color:"#e2e8f0",lineHeight:1.3,marginBottom:2}}>{item.name}</div>
-                    {item.selectedColor && <div style={{fontSize:10,color:"#555",marginBottom:4}}>{item.selectedColor}</div>}
-                    <div style={{fontSize:11,color:"#ff4d00",fontFamily:"'Bebas Neue',sans-serif",letterSpacing:1}}>{fmt(item.price * item.qty, currency)}</div>
-                  </div>
-                  <div style={{display:"flex",flexDirection:"column",alignItems:"flex-end",gap:6}}>
-                    <button onClick={() => onRemove(item.key)} style={{background:"transparent",border:"none",color:"#333",fontSize:12,cursor:"pointer"}}>✕</button>
-                    <div style={{display:"flex",alignItems:"center",gap:4,background:"#1a1a1a",borderRadius:7,overflow:"hidden"}}>
-                      <button onClick={() => onQty(item.key, item.qty - 1)} style={{background:"transparent",border:"none",color:"#ff4d00",padding:"4px 8px",cursor:"pointer",fontSize:14,fontWeight:700}}>−</button>
-                      <span style={{fontSize:12,color:"#fff",minWidth:16,textAlign:"center"}}>{item.qty}</span>
-                      <button onClick={() => onQty(item.key, item.qty + 1)} style={{background:"transparent",border:"none",color:"#ff4d00",padding:"4px 8px",cursor:"pointer",fontSize:14,fontWeight:700}}>+</button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div style={{padding:"16px 20px",borderTop:"1px solid #1a1a1a",display:"flex",flexDirection:"column",gap:10}}>
-              <div style={{display:"flex",gap:8}}>
-                <input value={code} onChange={e => setCode(e.target.value)} placeholder="Discount code" style={{flex:1,background:"#161616",border:"1px solid #222",borderRadius:8,padding:"8px 12px",color:"#e2e8f0",fontSize:12,outline:"none"}} />
-                <button onClick={applyCode} style={{background:"#1a1a1a",border:"1px solid #222",borderRadius:8,color:"#ff4d00",fontSize:11,fontWeight:700,padding:"8px 12px",cursor:"pointer"}}>APPLY</button>
-              </div>
-              {codeMsg && <div style={{fontSize:11,color:discount > 0 ? "#10b981" : "#ef4444"}}>{codeMsg}</div>}
-              {discount > 0 && (
-                <div style={{display:"flex",justifyContent:"space-between",fontSize:11,color:"#555"}}>
-                  <span>Discount ({Math.round(discount*100)}%)</span>
-                  <span style={{color:"#10b981"}}>−{fmt(total * discount, currency)}</span>
-                </div>
-              )}
-              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                <span style={{fontSize:13,color:"#777"}}>Total</span>
-                <span style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:22,color:"#ff4d00",letterSpacing:1}}>{fmt(finalTotal, currency)}</span>
-              </div>
-              <button onClick={() => setStep("checkout")} style={{background:"#ff4d00",border:"none",borderRadius:10,color:"#fff",fontWeight:800,fontSize:13,padding:"13px",cursor:"pointer",letterSpacing:1}}>
-                CHECKOUT →
-              </button>
-            </div>
-          </>
-        ) : (
-          <div style={{padding:"20px",display:"flex",flexDirection:"column",gap:12}}>
-            <button onClick={() => setStep("cart")} style={{background:"transparent",border:"none",color:"#555",fontSize:12,cursor:"pointer",textAlign:"left",padding:0,marginBottom:4}}>← Back to cart</button>
-            <div style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:16,color:"#fff",letterSpacing:2,marginBottom:4}}>SHIPPING DETAILS</div>
-            {[
-              {label:"Full Name *", val:name, set:setName, ph:"Your name"},
-              {label:"Email *", val:email, set:setEmail, ph:"your@email.com"},
-              {label:"Phone", val:phone, set:setPhone, ph:"+233..."},
-              {label:"Delivery Address *", val:address, set:setAddress, ph:"City, Region, Ghana"},
-            ].map(f => (
-              <div key={f.label} style={{display:"flex",flexDirection:"column",gap:4}}>
-                <label style={{fontSize:10,color:"#555",textTransform:"uppercase",letterSpacing:1}}>{f.label}</label>
-                <input value={f.val} onChange={e => f.set(e.target.value)} placeholder={f.ph} style={{background:"#161616",border:"1px solid #222",borderRadius:8,padding:"9px 12px",color:"#e2e8f0",fontSize:13,outline:"none"}} />
-              </div>
-            ))}
-            <div style={{background:"#161616",border:"1px solid #1e1e1e",borderRadius:10,padding:"12px",marginTop:4}}>
-              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                <span style={{fontSize:12,color:"#555"}}>Order Total</span>
-                <span style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:20,color:"#ff4d00"}}>{fmt(finalTotal, currency)}</span>
-              </div>
-            </div>
-            <button onClick={pay} style={{background:"#ff4d00",border:"none",borderRadius:10,color:"#fff",fontWeight:800,fontSize:13,padding:"14px",cursor:"pointer",letterSpacing:1,marginTop:4}}>
-              PAY WITH PAYSTACK
-            </button>
-            <p style={{fontSize:10,color:"#333",textAlign:"center"}}>🔒 Secured by Paystack · Payments in GHS</p>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
+    <div className="modal-overlay" style={{position:"fixed",inset:0,background:"#000000cc",zIndex:200,display:"flex",alignItems:"center",justifyContent:"center",padding:16}}>
+      <div style={{background:"#111",border:"1px solid #222",borderRadius:16,width:"100%",maxWidth:480,maxHeight:"90vh",overflowY:"auto",padding:24}}>
 
-/* ── PRODUCT DETAIL ── */
-function ProductDetail({ p, currency, onAdd, onBack, wishlist, onWishlist }) {
-  const [activeImg, setActiveImg] = React.useState(0);
-  const [selColor, setSelColor] = React.useState(p.colors[0] || "");
-  const inWish = wishlist.includes(p.id);
-  const savings = p.originalPrice ? p.originalPrice - p.price : 0;
-
-  return (
-    <div style={{maxWidth:1000,margin:"0 auto",padding:"20px 16px"}} className="fade-up">
-      <button onClick={onBack} style={{background:"transparent",border:"none",color:"#555",fontSize:12,cursor:"pointer",marginBottom:16,display:"flex",alignItems:"center",gap:6}}>
-        ← Back to products
-      </button>
-      <div style={{display:"flex",gap:24,flexWrap:"wrap"}}>
-        {/* Images */}
-        <div style={{flex:"1 1 300px",display:"flex",flexDirection:"column",gap:10}}>
-          <div style={{aspectRatio:"1/1",background:"#111",borderRadius:16,overflow:"hidden",border:"1px solid #1a1a1a"}}>
-            <img src={p.images[activeImg]} alt={p.name} style={{width:"100%",height:"100%",objectFit:"cover"}} />
-          </div>
-          {p.images.length > 1 && (
-            <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-              {p.images.map((img, idx) => (
-                <div key={idx} className="thumb" onClick={() => setActiveImg(idx)} style={{width:56,height:56,borderRadius:8,overflow:"hidden",border:`2px solid ${activeImg===idx?"#ff4d00":"#1a1a1a"}`,cursor:"pointer",transition:"border-color .2s",flexShrink:0}}>
-                  <img src={img} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}} />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-        {/* Info */}
-        <div style={{flex:"1 1 300px",display:"flex",flexDirection:"column",gap:14}}>
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:20}}>
           <div>
-            <div style={{fontSize:10,color:"#444",textTransform:"uppercase",letterSpacing:2,marginBottom:4}}>{p.brand} · {p.category}</div>
-            <h1 style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:32,color:"#fff",letterSpacing:2,lineHeight:1.1,marginBottom:8}}>{p.name}</h1>
-            <div style={{display:"flex",alignItems:"center",gap:8}}>
-              <Stars rating={p.rating} />
-              <span style={{fontSize:11,color:"#555"}}>{p.rating} ({p.reviews} reviews)</span>
+            <div style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:24,letterSpacing:2,color:"#fff"}}>CHECKOUT</div>
+            <div style={{fontSize:11,color:"#555"}}>Secure payment via Paystack</div>
+          </div>
+          <button onClick={onClose} style={{background:"#1a1a1a",border:"1px solid #222",borderRadius:8,color:"#888",fontSize:18,width:36,height:36,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>✕</button>
+        </div>
+
+        {/* Order Summary */}
+        <div style={{background:"#0c0c0c",border:"1px solid #1a1a1a",borderRadius:10,padding:12,marginBottom:16}}>
+          <div style={{fontSize:10,color:"#555",textTransform:"uppercase",letterSpacing:1,marginBottom:8}}>Order Summary</div>
+          {cart.map(item => (
+            <div key={item.key} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"5px 0",borderBottom:"1px solid #111",fontSize:12}}>
+              <div style={{color:"#bbb"}}>{item.qty}x {item.name}{item.selectedColor ? " ("+item.selectedColor+")" : ""}</div>
+              <div style={{color:"#fff",fontWeight:600}}>GH\u20B5{(item.price * item.qty * USD_TO_GHS).toFixed(2)}</div>
             </div>
-          </div>
-          <div style={{display:"flex",alignItems:"baseline",gap:12}}>
-            <span style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:36,color:"#ff4d00",letterSpacing:1}}>{fmt(p.price, currency)}</span>
-            {p.originalPrice && (
-              <div style={{display:"flex",flexDirection:"column"}}>
-                <span style={{fontSize:13,color:"#333",textDecoration:"line-through"}}>{fmt(p.originalPrice, currency)}</span>
-                <span style={{fontSize:10,color:"#10b981"}}>Save {fmt(savings, currency)}</span>
-              </div>
-            )}
-          </div>
-          <p style={{fontSize:13,color:"#777",lineHeight:1.8}}>{p.description}</p>
-          {p.colors.length > 0 && (
-            <div>
-              <div style={{fontSize:10,color:"#444",textTransform:"uppercase",letterSpacing:1,marginBottom:6}}>Option / Variant</div>
-              <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-                {p.colors.map(c => (
-                  <button key={c} onClick={() => setSelColor(c)} style={{background:selColor===c?"#ff4d00":"#1a1a1a",border:`1px solid ${selColor===c?"#ff4d00":"#2a2a2a"}`,borderRadius:8,color:selColor===c?"#fff":"#888",fontSize:12,padding:"7px 16px",cursor:"pointer",fontWeight:600,transition:"all .15s"}}>
-                    {c}
-                  </button>
-                ))}
-              </div>
+          ))}
+          {appliedDiscount > 0 && (
+            <div style={{display:"flex",justifyContent:"space-between",padding:"6px 0",fontSize:12}}>
+              <span style={{color:"#10b981"}}>Discount ({(appliedDiscount*100).toFixed(0)}%)</span>
+              <span style={{color:"#10b981"}}>- GH\u20B5{(discountAmt * USD_TO_GHS).toFixed(2)}</span>
             </div>
           )}
-          <div style={{background:"#111",border:"1px solid #1a1a1a",borderRadius:12,padding:"14px",display:"flex",flexDirection:"column",gap:6}}>
-            {p.specs.map((s, i) => (
-              <div key={i} style={{display:"flex",alignItems:"center",gap:8,fontSize:12,color:"#666"}}>
-                <span style={{color:"#ff4d00",fontSize:8}}>●</span>{s}
-              </div>
-            ))}
-          </div>
-          <div style={{display:"flex",gap:10}}>
-            <button className="addBtn" onClick={() => onAdd(p, selColor)} style={{flex:1,background:"#ff4d00",border:"none",borderRadius:10,color:"#fff",fontWeight:800,fontSize:13,padding:"14px",cursor:"pointer",letterSpacing:1,transition:"background .2s"}}>
-              ADD TO CART
-            </button>
-            <button onClick={() => onWishlist(p.id)} style={{background:"#1a1a1a",border:"1px solid #222",borderRadius:10,padding:"14px 18px",fontSize:18,cursor:"pointer"}}>
-              {inWish ? "❤️" : "🤍"}
-            </button>
-          </div>
-          <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
-            {["🚚 Fast Delivery","🔒 Secure Payment","↩️ Easy Returns"].map(t => (
-              <span key={t} style={{fontSize:10,color:"#444",background:"#111",border:"1px solid #1a1a1a",borderRadius:99,padding:"4px 10px"}}>{t}</span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ── ORDER SUCCESS ── */
-function OrderSuccess({ onHome }) {
-  return (
-    <div style={{minHeight:"60vh",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:16,padding:20,textAlign:"center"}} className="fade-up">
-      <div style={{fontSize:64}}>✅</div>
-      <h2 style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:32,color:"#fff",letterSpacing:2}}>ORDER CONFIRMED!</h2>
-      <p style={{fontSize:14,color:"#555",maxWidth:320,lineHeight:1.8}}>
-        Thank you for shopping with Dropzone! Your payment was received and your order is being processed.
-      </p>
-      <button onClick={onHome} style={{background:"#ff4d00",border:"none",borderRadius:10,color:"#fff",fontWeight:800,fontSize:13,padding:"12px 28px",cursor:"pointer",letterSpacing:1,marginTop:8}}>
-        CONTINUE SHOPPING
-      </button>
-    </div>
-  );
-}
-
-/* ── MAIN APP ── */
-function App() {
-  const [cart, setCart] = React.useState([]);
-  const [currency, setCurrency] = React.useState("Both");
-  const [category, setCategory] = React.useState("All");
-  const [search, setSearch] = React.useState("");
-  const [selected, setSelected] = React.useState(null);
-  const [cartOpen, setCartOpen] = React.useState(false);
-  const [wishlist, setWishlist] = React.useState([]);
-  const [toast, setToast] = React.useState(null);
-  const [sortBy, setSortBy] = React.useState("default");
-  const [orderDone, setOrderDone] = React.useState(false);
-  const [banner, setBanner] = React.useState(true);
-
-  const showToast = (msg, color) => {
-    setToast({ msg, color: color || "#ff4d00" });
-    setTimeout(() => setToast(null), 3000);
-  };
-
-  const addToCart = (p, color) => {
-    const c = color || "";
-    setCart(prev => {
-      const key = String(p.id) + c;
-      const ex = prev.find(i => i.key === key);
-      if (ex) return prev.map(i => i.key === key ? { ...i, qty: i.qty + 1 } : i);
-      return [...prev, { ...p, qty: 1, key, selectedColor: c }];
-    });
-    showToast("✓ " + p.name + " added to cart");
-  };
-
-  const removeFromCart = (key) => setCart(prev => prev.filter(i => i.key !== key));
-  const updateQty = (key, qty) => {
-    if (qty < 1) removeFromCart(key);
-    else setCart(prev => prev.map(i => i.key === key ? { ...i, qty } : i));
-  };
-  const toggleWishlist = (id) => setWishlist(prev => prev.includes(id) ? prev.filter(w => w !== id) : [...prev, id]);
-
-  const cartTotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  const cartCount = cart.reduce((s, i) => s + i.qty, 0);
-
-  const filtered = PRODUCTS
-    .filter(p => category === "All" || p.category === category)
-    .filter(p => p.name.toLowerCase().includes(search.toLowerCase()))
-    .sort((a, b) => {
-      if (sortBy === "price-asc") return a.price - b.price;
-      if (sortBy === "price-desc") return b.price - a.price;
-      if (sortBy === "rating") return b.rating - a.rating;
-      return 0;
-    });
-
-  const goHome = () => { setSelected(null); setOrderDone(false); window.scrollTo(0, 0); };
-  const openProduct = (p) => { setSelected(p); window.scrollTo(0, 0); };
-
-  return (
-    <div style={{minHeight:"100vh",background:"#0c0c0c",color:"#e2e8f0"}}>
-      {banner && <OfferBanner onClose={() => setBanner(false)} />}
-
-      {/* HEADER */}
-      <header style={{background:"#0c0c0c",borderBottom:"1px solid #1a1a1a",position:"sticky",top:0,zIndex:50}}>
-        <div style={{maxWidth:1280,margin:"0 auto",padding:"0 16px",height:56,display:"flex",alignItems:"center",justifyContent:"space-between",gap:12}}>
-          <div style={{display:"flex",alignItems:"center",gap:6,cursor:"pointer",flexShrink:0}} onClick={goHome}>
-            <span style={{color:"#ff4d00",fontSize:16}}>▼</span>
-            <span style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:22,letterSpacing:3,color:"#fff"}}>DROPZONE</span>
-          </div>
-          <div style={{display:"flex",alignItems:"center",gap:8,flexShrink:0}}>
-            <select style={{background:"#1a1a1a",border:"1px solid #222",borderRadius:7,color:"#888",fontSize:11,padding:"5px 6px",cursor:"pointer",outline:"none"}} value={currency} onChange={e => setCurrency(e.target.value)}>
-              <option value="Both">USD+GHS</option>
-              <option value="USD">USD ($)</option>
-              <option value="GHS">GHS (GH₵)</option>
-            </select>
-            <button style={{background:"transparent",border:"none",fontSize:20,cursor:"pointer",color:"#fff",position:"relative",lineHeight:1}} onClick={() => setCartOpen(true)}>
-              🛒
-              {cartCount > 0 && (
-                <span style={{position:"absolute",top:-4,right:-6,background:"#ff4d00",color:"#fff",borderRadius:99,fontSize:9,padding:"1px 5px",fontWeight:700,lineHeight:1.4}}>
-                  {cartCount}
-                </span>
-              )}
-            </button>
-          </div>
-        </div>
-        <div style={{overflowX:"auto",borderTop:"1px solid #111"}}>
-          <div style={{display:"flex",gap:2,padding:"6px 16px",minWidth:"max-content"}}>
-            {CATEGORIES.map(c => (
-              <button key={c} onClick={() => { setCategory(c); goHome(); }}
-                style={{background:"transparent",border:"1px solid " + (category===c&&!selected?"#ff4d00":"transparent"),borderRadius:7,padding:"4px 12px",color:category===c&&!selected?"#ff4d00":"#555",fontSize:11,cursor:"pointer",fontWeight:600,whiteSpace:"nowrap",transition:"all .15s"}}>
-                {c}
-              </button>
-            ))}
-          </div>
-        </div>
-      </header>
-
-      {/* CONTENT */}
-      {orderDone ? (
-        <OrderSuccess onHome={() => { goHome(); setOrderDone(false); }} />
-      ) : selected ? (
-        <ProductDetail
-          p={selected}
-          currency={currency}
-          onAdd={(p, c) => { addToCart(p, c); }}
-          onBack={goHome}
-          wishlist={wishlist}
-          onWishlist={toggleWishlist}
-        />
-      ) : (
-        <>
-          {/* HERO */}
-          <div style={{background:"linear-gradient(135deg,#0c0c0c,#150800)",borderBottom:"1px solid #1a1a1a",padding:"40px 20px"}}>
-            <div style={{maxWidth:1280,margin:"0 auto"}}>
-              <div style={{display:"inline-block",background:"#1a1a1a",border:"1px solid #222",borderRadius:99,padding:"5px 14px",fontSize:11,color:"#777",marginBottom:12}}>
-                🇬🇭 Ghana &amp; Worldwide Delivery
-              </div>
-              <h1 style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:"clamp(36px,8vw,64px)",lineHeight:1,color:"#fff",marginBottom:10,letterSpacing:3}}>
-                THE <span style={{color:"#ff4d00"}}>DROP</span> IS HERE.
-              </h1>
-              <p style={{fontSize:14,color:"#444",maxWidth:400,lineHeight:1.7,marginBottom:20}}>
-                Premium gadgets &amp; home tech. Fast delivery worldwide.
-              </p>
-              <div style={{display:"flex",alignItems:"center",gap:20,flexWrap:"wrap"}}>
-                {[{n:PRODUCTS.length,l:"Products"},{n:PRODUCTS.filter(p=>p.originalPrice).length,l:"On Sale"},{n:"🌍",l:"Global Ship"}].map((s, i) => (
-                  <React.Fragment key={i}>
-                    {i > 0 && <div style={{width:1,height:28,background:"#1a1a1a"}} />}
-                    <div style={{display:"flex",flexDirection:"column",gap:2}}>
-                      <span style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:24,color:"#fff",letterSpacing:1}}>{s.n}</span>
-                      <span style={{fontSize:10,color:"#333",textTransform:"uppercase",letterSpacing:1}}>{s.l}</span>
-                    </div>
-                  </React.Fragment>
-                ))}
-              </div>
+          <div style={{display:"flex",justifyContent:"space-between",marginTop:8,paddingTop:8,borderTop:"1px solid #1a1a1a"}}>
+            <span style={{fontWeight:700,color:"#fff"}}>Total</span>
+            <div style={{textAlign:"right"}}>
+              <div style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:22,color:"#ff4d00",letterSpacing:1}}>GH\u20B5{totalGHS.toFixed(2)}</div>
+              <div style={{fontSize:10,color:"#555"}}>${total.toFixed(2)} USD</div>
             </div>
           </div>
+        </div>
 
-          {/* FILTERS */}
-          <div style={{maxWidth:1280,margin:"0 auto",padding:"16px 16px 8px",display:"flex",justifyContent:"space-between",alignItems:"center",gap:10,flexWrap:"wrap"}}>
+        {/* Discount Code */}
+        <div style={{marginBottom:16}}>
+          <div style={{fontSize:10,color:"#555",textTransform:"uppercase",letterSpacing:1,marginBottom:6}}>Discount Code</div>
+          <div style={{display:"flex",gap:8}}>
             <input
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              placeholder="🔍 Search products..."
-              style={{background:"#111",border:"1px solid #1e1e1e",borderRadius:9,padding:"8px 14px",color:"#e2e8f0",fontSize:12,outline:"none",minWidth:180,flex:"1 1 180px",maxWidth:300}}
+              value={discountCode}
+              onChange={e => setDiscountCode(e.target.value)}
+              placeholder="e.g. DROPZONE10"
+              style={{flex:1,background:"#0c0c0c",border:"1px solid #222",borderRadius:8,padding:"8px 12px",color:"#e2e8f0",fontSize:12,outline:"none"}}
             />
-            <select value={sortBy} onChange={e => setSortBy(e.target.value)}
-              style={{background:"#111",border:"1px solid #1e1e1e",borderRadius:9,padding:"8px 12px",color:"#888",fontSize:12,outline:"none",cursor:"pointer"}}>
-              <option value="default">Sort: Default</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-              <option value="rating">Top Rated</option>
-            </select>
-            <span style={{fontSize:11,color:"#333"}}>{filtered.length} products</span>
-          </div>
-
-          {/* GRID */}
-          <div style={{maxWidth:1280,margin:"0 auto",padding:"8px 16px 40px",display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(180px,1fr))",gap:14}}>
-            {filtered.map(p => (
-              <ProductCard
-                key={p.id}
-                p={p}
-                currency={currency}
-                onOpen={openProduct}
-                onAdd={addToCart}
-                wishlist={wishlist}
-                onWishlist={toggleWishlist}
-              />
-            ))}
-            {filtered.length === 0 && (
-              <div style={{gridColumn:"1/-1",textAlign:"center",padding:"60px 20px",color:"#333",fontSize:14}}>
-                No products found. Try a different search or category.
-              </div>
-            )}
-          </div>
-
-          {/* FOOTER */}
-          <div style={{borderTop:"1px solid #111",padding:"24px 20px",textAlign:"center",display:"flex",flexDirection:"column",gap:6}}>
-            <span style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:18,letterSpacing:3,color:"#222"}}>DROPZONE</span>
-            <span style={{fontSize:11,color:"#2a2a2a"}}>© 2025 Dropzone. Premium Gadgets & Home Tech. All rights reserved.</span>
-          </div>
-        </>
-      )}
-
-      {/* CART DRAWER */}
-      {cartOpen && (
-        <CartDrawer
-          cart={cart}
-          onClose={() => setCartOpen(false)}
-          onRemove={removeFromCart}
-          onQty={updateQty}
-          currency={currency}
-          onCheckout={(ref) => {
-            setCart([]);
-            setCartOpen(false);
-            setOrderDone(true);
-            setSelected(null);
-            showToast("🎉 Payment confirmed! Ref: " + ref, "#10b981");
-          }}
-        />
-      )}
-
-      {/* TOAST */}
-      <Toast toast={toast} />
-    </div>
-  );
-}
-
-/* ── MOUNT ── */
-const rootEl = document.getElementById("root");
-const root = ReactDOM.createRoot(rootEl);
-root.render(React.createElement(App));
-
-</script>
-</body>
-</html>
+            <button onClick={applyCode} style={{background:"#1a1a1a",border:"1px solid #333",borderRadius:8,color:"#ff4d00",fontSize:12,fontWeight:700,padd
